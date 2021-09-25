@@ -59,6 +59,17 @@ func (l *Lexer) readInteger() string {
 	return l.input[start:l.position]
 }
 
+func (l *Lexer) readString() string {
+	start := l.position + 1
+
+	l.readChar()
+	for l.char != '"' {
+		l.readChar()
+	}
+
+	return l.input[start:l.position]
+}
+
 func (l *Lexer) NextToken() token.Token {
 	l.readSkippingWhitespace()
 
@@ -75,6 +86,12 @@ func (l *Lexer) NextToken() token.Token {
 	if isInteger(l.char) {
 		integer := l.readInteger()
 		return token.Token{Type: token.INTEGER, Value: integer}
+	}
+
+	if l.char == '"' {
+		string := l.readString()
+		l.readChar()
+		return token.Token{Type: token.STRING, Value: string}
 	}
 
 	if operation, ok := token.Operations[string(l.char)]; ok {

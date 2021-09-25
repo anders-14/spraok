@@ -19,6 +19,7 @@ const (
 	// ---- LITERALS ----
 
 	INTEGER
+	STRING
 )
 
 type Token struct {
@@ -49,4 +50,5 @@ var humanReadable = map[TokenType]string{
 	ASSIGN:     "ASSIGN",
 	VAR:        "VAR",
 	INTEGER:    "INTEGER",
+	STRING:     "STRING",
 }
