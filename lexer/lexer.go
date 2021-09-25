@@ -1,8 +1,6 @@
 package lexer
 
 import (
-	"fmt"
-
 	"github.com/anders-14/spraok/token"
 )
 
@@ -30,7 +28,6 @@ func (l *Lexer) readChar() {
 	l.char = l.input[l.nextPosition]
 	l.position = l.nextPosition
 	l.nextPosition++
-	fmt.Println(l.position, l.nextPosition)
 }
 
 func (l *Lexer) readSkippingWhitespace() {
