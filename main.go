@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -13,6 +14,7 @@ type TokenType int
 const (
 	T_KEYWORD TokenType = iota
 	T_OPERATION
+	T_LITERAL
 )
 
 type Token struct {
@@ -60,6 +62,12 @@ func lexLines(lines []string) [][]Token {
 
 			token, ok = Operations[word]
 			if ok {
+				tokenLine = append(tokenLine, token)
+				continue
+			}
+
+			if word, err := strconv.Atoi(word); err == nil {
+				token = Token{T_LITERAL, word}
 				tokenLine = append(tokenLine, token)
 				continue
 			}
