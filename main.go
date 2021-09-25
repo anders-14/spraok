@@ -15,6 +15,7 @@ const (
 	T_KEYWORD TokenType = iota
 	T_OPERATION
 	T_LITERAL
+	T_IDENTIFIER
 )
 
 type Token struct {
@@ -71,6 +72,9 @@ func lexLines(lines []string) [][]Token {
 				tokenLine = append(tokenLine, token)
 				continue
 			}
+
+			token = Token{T_IDENTIFIER, word}
+			tokenLine = append(tokenLine, token)
 
 		}
 
