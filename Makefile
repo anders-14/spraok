@@ -1,4 +1,4 @@
-BIN=spraak
+BIN=spraok
 
 run: $(BIN)
 	bin/$(BIN)

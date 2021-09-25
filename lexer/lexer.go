@@ -3,7 +3,7 @@ package lexer
 import (
 	"fmt"
 
-	"github.com/anders-14/spraak/token"
+	"github.com/anders-14/spraok/token"
 )
 
 type Lexer struct {

@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/anders-14/spraak/lexer"
+	"github.com/anders-14/spraok/lexer"
 )
 
 func readFromFile(filename string) string {
@@ -18,7 +18,7 @@ func readFromFile(filename string) string {
 }
 
 func main() {
-	l := lexer.New(readFromFile("./test.spraak"))
+	l := lexer.New(readFromFile("./test.spraok"))
 
 	for !l.Done() {
 		fmt.Println(l.NextToken().HumanReadable())
