@@ -31,21 +31,24 @@ var Keywords = map[string]Token{
 }
 
 // ---- LEXING ----
-func lexLines(lines []string) []Token {
-	var tokens []Token
+func lexLines(lines []string) [][]Token {
+	var tokens [][]Token
 
 	for _, line := range lines {
 
 		words := strings.Split(line, " ")
+		var tokenLine []Token
 
 		for _, word := range words {
 
 			token, ok := Keywords[word]
 			if ok {
-				tokens = append(tokens, token)
+				tokenLine = append(tokenLine, token)
 				continue
 			}
 		}
+
+		tokens = append(tokens, tokenLine)
 	}
 
 	return tokens
