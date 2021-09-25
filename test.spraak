@@ -1,8 +1,1 @@
-var a is 10
-var b is 20
-
-if a equal b then
-  print a
-else
-  print b
-end
+var a = 10
