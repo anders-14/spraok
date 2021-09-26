@@ -11,6 +11,10 @@ const (
 	// ---- OPERATIONS ----
 
 	ASSIGN
+	PLUS
+	MINUS
+	MUL
+	DIV
 	GT
 	LT
 	EQUALS
@@ -20,6 +24,12 @@ const (
 	// ---- KEYWORDS ----
 
 	VAR
+	IF
+	THEN
+	ELSE
+	END
+	WHILE
+	DO
 
 	// ---- LITERALS ----
 
@@ -42,11 +52,21 @@ func (t Token) HumanReadable() string {
 }
 
 var Keywords = map[string]TokenType{
-	"var": VAR,
+	"var":   VAR,
+	"if":    IF,
+	"then":  THEN,
+	"else":  ELSE,
+	"end":   END,
+	"while": WHILE,
+	"do":    DO,
 }
 
 var Operations = map[string]TokenType{
 	"=":  ASSIGN,
+	"+":  PLUS,
+	"-":  MINUS,
+	"*":  MUL,
+	"/":  DIV,
 	">":  GT,
 	"<":  LT,
 	"==": EQUALS,
@@ -60,12 +80,22 @@ var humanReadable = map[TokenType]string{
 	IDENTIFIER: "IDENTIFIER",
 	INVALID:    "INVAILD",
 	ASSIGN:     "ASSIGN",
+	PLUS:       "PLUS",
+	MINUS:      "MINUS",
+	MUL:        "MUL",
+	DIV:        "DIV",
 	GT:         "GREATER THAN",
 	LT:         "LESS THAN",
 	EQUALS:     "EQUALS",
 	GT_EQUALS:  "GREATER THAN OR EQUALS",
 	LT_EQUALS:  "LESS THAN OR EQUALS",
 	VAR:        "VAR",
+	IF:         "IF",
+	THEN:       "THEN",
+	ELSE:       "ELSE",
+	END:        "END",
+	WHILE:      "WHILE",
+	DO:         "DO",
 	INTEGER:    "INTEGER",
 	STRING:     "STRING",
 }
