@@ -11,6 +11,11 @@ const (
 	// ---- OPERATIONS ----
 
 	ASSIGN
+	GT
+	LT
+	EQUALS
+	GT_EQUALS
+	LT_EQUALS
 
 	// ---- KEYWORDS ----
 
@@ -41,13 +46,25 @@ var Keywords = map[string]TokenType{
 }
 
 var Operations = map[string]TokenType{
-	"=": ASSIGN,
+	"=":  ASSIGN,
+	">":  GT,
+	"<":  LT,
+	"==": EQUALS,
+	">=": GT_EQUALS,
+	"<=": LT_EQUALS,
 }
+
+var PossibleTwoCharOperation = []byte{'=', '<', '>'}
 
 var humanReadable = map[TokenType]string{
 	IDENTIFIER: "IDENTIFIER",
 	INVALID:    "INVAILD",
 	ASSIGN:     "ASSIGN",
+	GT:         "GREATER THAN",
+	LT:         "LESS THAN",
+	EQUALS:     "EQUALS",
+	GT_EQUALS:  "GREATER THAN OR EQUALS",
+	LT_EQUALS:  "LESS THAN OR EQUALS",
 	VAR:        "VAR",
 	INTEGER:    "INTEGER",
 	STRING:     "STRING",

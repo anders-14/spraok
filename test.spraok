@@ -1,2 +1,5 @@
 var a = 10
 var b = "Hello World!"
+a < b
+b >= a
+a == a
