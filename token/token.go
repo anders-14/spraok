@@ -2,43 +2,43 @@ package token
 
 import "fmt"
 
-type TokenType uint
+type Type uint
 
 const (
-	IDENTIFIER TokenType = iota
-	INVALID
+	Identifier Type = iota
+	Invalid
 
 	// ---- OPERATIONS ----
 
-	ASSIGN
-	PLUS
-	MINUS
-	MUL
-	DIV
-	GT
-	LT
-	EQUALS
-	GT_EQUALS
-	LT_EQUALS
+	Assign
+	Plus
+	Minus
+	Mul
+	Div
+	Gt
+	Lt
+	Equals
+	GtEquals
+	LtEquals
 
 	// ---- KEYWORDS ----
 
-	VAR
-	IF
-	THEN
-	ELSE
-	END
-	WHILE
-	DO
+	Var
+	If
+	Then
+	Else
+	End
+	While
+	Do
 
 	// ---- LITERALS ----
 
-	INTEGER
-	STRING
+	Integer
+	String
 )
 
 type Token struct {
-	Type  TokenType
+	Type  Type
 	Value string
 }
 
@@ -51,51 +51,51 @@ func (t Token) HumanReadable() string {
 	return fmt.Sprintf("(%+v : %+v)", tName, t.Value)
 }
 
-var Keywords = map[string]TokenType{
-	"var":   VAR,
-	"if":    IF,
-	"then":  THEN,
-	"else":  ELSE,
-	"end":   END,
-	"while": WHILE,
-	"do":    DO,
+var Keywords = map[string]Type{
+	"var":   Var,
+	"if":    If,
+	"then":  Then,
+	"else":  Else,
+	"end":   End,
+	"while": While,
+	"do":    Do,
 }
 
-var Operations = map[string]TokenType{
-	"=":  ASSIGN,
-	"+":  PLUS,
-	"-":  MINUS,
-	"*":  MUL,
-	"/":  DIV,
-	">":  GT,
-	"<":  LT,
-	"==": EQUALS,
-	">=": GT_EQUALS,
-	"<=": LT_EQUALS,
+var Operations = map[string]Type{
+	"=":  Assign,
+	"+":  Plus,
+	"-":  Minus,
+	"*":  Mul,
+	"/":  Div,
+	">":  Gt,
+	"<":  Lt,
+	"==": Equals,
+	">=": GtEquals,
+	"<=": LtEquals,
 }
 
 var PossibleTwoCharOperation = []rune{'=', '<', '>'}
 
-var humanReadable = map[TokenType]string{
-	IDENTIFIER: "IDENTIFIER",
-	INVALID:    "INVAILD",
-	ASSIGN:     "ASSIGN",
-	PLUS:       "PLUS",
-	MINUS:      "MINUS",
-	MUL:        "MUL",
-	DIV:        "DIV",
-	GT:         "GREATER THAN",
-	LT:         "LESS THAN",
-	EQUALS:     "EQUALS",
-	GT_EQUALS:  "GREATER THAN OR EQUALS",
-	LT_EQUALS:  "LESS THAN OR EQUALS",
-	VAR:        "VAR",
-	IF:         "IF",
-	THEN:       "THEN",
-	ELSE:       "ELSE",
-	END:        "END",
-	WHILE:      "WHILE",
-	DO:         "DO",
-	INTEGER:    "INTEGER",
-	STRING:     "STRING",
+var humanReadable = map[Type]string{
+	Identifier: "IDENTIFIER",
+	Invalid:    "INVAILD",
+	Assign:     "ASSIGN",
+	Plus:       "PLUS",
+	Minus:      "MINUS",
+	Mul:        "MUL",
+	Div:        "DIV",
+	Gt:         "GREATER THAN",
+	Lt:         "LESS THAN",
+	Equals:     "EQUALS",
+	GtEquals:  "GREATER THAN OR EQUALS",
+	LtEquals:  "LESS THAN OR EQUALS",
+	Var:        "VAR",
+	If:         "IF",
+	Then:       "THEN",
+	Else:       "ELSE",
+	End:        "END",
+	While:      "WHILE",
+	Do:         "DO",
+	Integer:    "INTEGER",
+	String:     "STRING",
 }

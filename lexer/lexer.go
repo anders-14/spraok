@@ -87,18 +87,18 @@ func (l *Lexer) NextToken() token.Token {
 			return token.Token{Type: keyword, Value: word}
 		}
 
-		return token.Token{Type: token.IDENTIFIER, Value: word}
+		return token.Token{Type: token.Identifier, Value: word}
 	}
 
 	if isInteger(l.char) {
 		integer := l.readInteger()
-		return token.Token{Type: token.INTEGER, Value: integer}
+		return token.Token{Type: token.Integer, Value: integer}
 	}
 
 	if l.char == '"' {
 		string := l.readString()
 		l.readChar()
-		return token.Token{Type: token.STRING, Value: string}
+		return token.Token{Type: token.String, Value: string}
 	}
 
 	if runeInSlice(l.char, token.PossibleTwoCharOperation) {
@@ -113,7 +113,7 @@ func (l *Lexer) NextToken() token.Token {
 		return token.Token{Type: operation, Value: string(l.char)}
 	}
 
-	return token.Token{Type: token.INVALID, Value: string(l.char)}
+	return token.Token{Type: token.Invalid, Value: string(l.char)}
 }
 
 func runeInSlice(el rune, slice []rune) bool {
