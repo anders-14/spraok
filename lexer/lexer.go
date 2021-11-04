@@ -8,7 +8,7 @@ type Lexer struct {
 	input        string
 	position     int
 	nextPosition int
-	char         byte
+	char         rune
 }
 
 func New(input string) *Lexer {
@@ -19,11 +19,11 @@ func (l *Lexer) Done() bool {
 	return l.nextPosition >= len(l.input)
 }
 
-func (l *Lexer) peek() byte {
+func (l *Lexer) peek() rune {
 	if l.nextPosition >= len(l.input) {
 		return 0
 	}
-	return l.input[l.nextPosition]
+	return rune(l.input[l.nextPosition])
 }
 
 func (l *Lexer) readChar() {
@@ -32,7 +32,7 @@ func (l *Lexer) readChar() {
 		return
 	}
 
-	l.char = l.input[l.nextPosition]
+	l.char = rune(l.input[l.nextPosition])
 	l.position = l.nextPosition
 	l.nextPosition++
 }
@@ -101,7 +101,7 @@ func (l *Lexer) NextToken() token.Token {
 		return token.Token{Type: token.STRING, Value: string}
 	}
 
-	if byteInSlice(l.char, token.PossibleTwoCharOperation) {
+	if runeInSlice(l.char, token.PossibleTwoCharOperation) {
 		str := string(l.char) + string(l.peek())
 		if operation, ok := token.Operations[str]; ok {
 			l.readChar()
@@ -116,7 +116,7 @@ func (l *Lexer) NextToken() token.Token {
 	return token.Token{Type: token.INVALID, Value: string(l.char)}
 }
 
-func byteInSlice(el byte, slice []byte) bool {
+func runeInSlice(el rune, slice []rune) bool {
 	for _, _el := range slice {
 		if el == _el {
 			return true
@@ -125,10 +125,10 @@ func byteInSlice(el byte, slice []byte) bool {
 	return false
 }
 
-func isLetter(char byte) bool {
+func isLetter(char rune) bool {
 	return ('a' <= char && char <= 'z') || ('A' <= char && char <= 'Z') || char == '_'
 }
 
-func isInteger(char byte) bool {
+func isInteger(char rune) bool {
 	return '0' <= char && char <= '9'
 }

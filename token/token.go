@@ -74,7 +74,7 @@ var Operations = map[string]TokenType{
 	"<=": LT_EQUALS,
 }
 
-var PossibleTwoCharOperation = []byte{'=', '<', '>'}
+var PossibleTwoCharOperation = []rune{'=', '<', '>'}
 
 var humanReadable = map[TokenType]string{
 	IDENTIFIER: "IDENTIFIER",
